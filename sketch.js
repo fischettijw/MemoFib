@@ -5,11 +5,11 @@ function fib(index) {
     return fib(index - 1) + fib(index - 2);
 }
 
-for (i = 0; i < 40; i++) {
+for (i = 0; i < 10; i++) {
     startTime = new Date();
     console.log("N", i, fib(i), (new Date() - startTime));
 }
-// let k = 45;
+// let k = 46;
 // startTime = new Date();
 // console.log("N", k, fib(k), (new Date() - startTime));
 console.log("------");
@@ -49,5 +49,22 @@ function fibS(index) {
 for (i = 0; i < 100; i++) {
     startTime = new Date();
     console.log("S", i, fibS(i), (new Date() - startTime));
+}
+console.log("------");
+
+function fibV(index) {
+    var funcCache;
+    if (typeof funcCache == "undefined") {
+        funcCache = [];
+    }
+    if (funcCache[index]) { return funcCache[index] };
+    if (index < 2) return index;
+    funcCache[index] = fibS(index - 1) + fibS(index - 2);
+    return funcCache[index];
+}
+
+for (i = 0; i < 100; i++) {
+    startTime = new Date();
+    console.log("V", i, fibV(i), (new Date() - startTime));
 }
 console.log("------");
